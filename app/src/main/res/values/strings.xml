@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Doe vida</string>
+    <string name="cadastre_se">Cadastre-se</string>
+    <string name="entrar">Entrar</string>
+    <string name="cpf">CPF</string>
+    <string name="nome">Nome</string>
+    <string name="email">Email</string>
+    <string name="sexo">Sexo</string>
+    <string name="celular">Celular</string>
+    <string name="tipo_sanguineo">Tipo Sanguíneo</string>
+    <string name="data_de_nascimento">Data de Nascimento</string>
+    <string name="senha">Senha</string>
+    <string name="confirme_sua_senha">Confirme sua Senha</string>
+    <string name="cidade">Cidade</string>
+    <string name="cadastrar">Cadastrar</string>
+    <string name="exemplo_hotmail_com">exemplo@hotmail.com</string>
+    <string name="digite_seu_nome">   Digite seu nome</string>
+    <string-array name="gender_options">
+        <item>Feminino</item>
+        <item>Masculino</item>
+    </string-array>
+</resources>

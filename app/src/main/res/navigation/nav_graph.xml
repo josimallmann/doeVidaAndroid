@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.myapplication.LoginFragment"
+        android:label="LoginFragment"
+        tools:layout="@layout/login">
+        <action
+            android:id="@+id/action_loginFragment_to_mainScreenFragment"
+            app:destination="@id/mainScreenFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_cadastroFragment"
+            app:destination="@id/cadastroFragment" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/cadastroFragment"
+        android:name="com.example.myapplication.CadastroFragment"
+        android:label="CadastroFragment"
+        tools:layout="@layout/cadastro">
+        <action
+            android:id="@+id/action_cadastroFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_cadastroFragment_to_mainScreenFragment"
+            app:destination="@id/mainScreenFragment" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/mainScreenFragment"
+        android:name="com.example.myapplication.MainScreenFragment"
+        android:label="MainScreenFragment"
+        tools:layout="@layout/main_screen">
+        <action
+            android:id="@+id/action_mainScreenFragment_to_postFragment"
+            app:destination="@id/postFragment" />
+        <action
+            android:id="@+id/action_mainScreenFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/postFragment"
+        android:name="com.example.myapplication.PostFragment"
+        android:label="PostFragment"
+        tools:layout="@layout/post">
+    <action
+        android:id="@+id/action_postFragment_to_mainScreenFragment"
+        app:destination="@id/mainScreenFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/hospitalFragment"
+        android:name="com.example.myapplication.HospitalFragment"
+        android:label="HospitalFragment"
+        tools:layout="@layout/fragment_hospital">
+        <action
+            android:id="@+id/action_hospitalFragment_to_mainScreenFragment"
+            android:title="Hospitais"
+        app:destination="@id/mainScreenFragment" />
+    </fragment>
+</navigation>

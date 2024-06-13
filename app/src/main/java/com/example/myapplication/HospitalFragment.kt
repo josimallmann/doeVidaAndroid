@@ -9,6 +9,9 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class HospitalFragment : Fragment() {
 
@@ -35,13 +38,26 @@ class HospitalFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val hospitals = listOf(
-            Hospital("Hospiptal Erasto Gaertner", Estoque("medio", "baixo", "alto", "baixo", "alto", "medio", "medio", "baixo", "baixo")),
-        )
-
-        hospitalAdapter = HospitalAdapter(hospitals)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        recyclerView.adapter = hospitalAdapter
+
+        fetchHospitals()
+    }
+
+    private fun fetchHospitals() {
+        val apiService = ApiClient.instance.create(ApiService::class.java)
+        apiService.getHospitals().enqueue(object : Callback<List<Hospital>> {
+            override fun onResponse(call: Call<List<Hospital>>, response: Response<List<Hospital>>) {
+                if (response.isSuccessful) {
+                    val hospitals = response.body() ?: emptyList()
+                    hospitalAdapter = HospitalAdapter(hospitals)
+                    recyclerView.adapter = hospitalAdapter
+                }
+            }
+
+            override fun onFailure(call: Call<List<Hospital>>, t: Throwable) {
+                // Handle error
+            }
+        })
     }
 
     private fun navigateToMainScreen() {

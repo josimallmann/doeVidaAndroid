@@ -87,6 +87,11 @@ class CadastroFragment : Fragment() {
         val senha: EditText = view.findViewById(R.id.editTextTSenha)
         val confirmeSenha: EditText = view.findViewById(R.id.editTextTConfirmeSuaSenha)
 
+        if (senha.text.toString().isEmpty() || confirmeSenha.text.toString().isEmpty()) {
+            Toast.makeText(requireContext(), "Senha é obrigatória", Toast.LENGTH_SHORT).show()
+            return false
+        }
+
         if (senha.text.toString() != confirmeSenha.text.toString()) {
             Toast.makeText(requireContext(), "Senhas não coincidem", Toast.LENGTH_SHORT).show()
             return false

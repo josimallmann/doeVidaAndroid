@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
 
     <Button
         android:id="@+id/btnVoltarMainS"
@@ -21,9 +16,16 @@
         android:focusable="false"
         android:foreground="?android:attr/selectableItemBackground"
         android:outlineProvider="none"
-        android:padding="0dp"
         android:stateListAnimator="@null"
         android:text="X"
         android:textColor="@color/branco"
         android:textSize="30dp" />
-</RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
+
+</FrameLayout>

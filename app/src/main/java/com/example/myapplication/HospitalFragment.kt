@@ -1,6 +1,6 @@
 package com.example.myapplication
-
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -38,27 +38,38 @@ class HospitalFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val hospitals = listOf(
+            Hospital("Hospiptal Erasto Gaertner", Estoque("medio", "baixo", "alto", "baixo", "alto", "medio", "medio", "baixo", "baixo")),
+        )
+
+        hospitalAdapter = HospitalAdapter(hospitals)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        recyclerView.adapter = hospitalAdapter
 
         fetchHospitals()
     }
 
     private fun fetchHospitals() {
+        Log.d("HospitalFragment", "Buscando hospitais...")
         val apiService = ApiClient.instance.create(ApiService::class.java)
         apiService.getHospitals().enqueue(object : Callback<List<Hospital>> {
             override fun onResponse(call: Call<List<Hospital>>, response: Response<List<Hospital>>) {
                 if (response.isSuccessful) {
                     val hospitals = response.body() ?: emptyList()
-                    hospitalAdapter = HospitalAdapter(hospitals)
-                    recyclerView.adapter = hospitalAdapter
+                    Log.d("HospitalFragment", "Hospitais encontrados: ${hospitals.size}")
+                    // Atualizar os dados do adaptador
+                    hospitalAdapter.updateData(hospitals)
+                } else {
+                    Log.e("HospitalFragment", "Resposta sem sucesso: ${response.errorBody()?.string()}")
                 }
             }
 
             override fun onFailure(call: Call<List<Hospital>>, t: Throwable) {
-                // Handle error
+                Log.e("HospitalFragment", "Falha ao buscar hospitais", t)
             }
         })
     }
+
 
     private fun navigateToMainScreen() {
         findNavController().navigate(R.id.action_hospitalFragment_to_mainScreenFragment)

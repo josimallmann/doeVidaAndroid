@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class HospitalAdapter(private val hospitals: List<Hospital>) : RecyclerView.Adapter<HospitalAdapter.ViewHolder>() {
+class HospitalAdapter(private var hospitals: List<Hospital>) : RecyclerView.Adapter<HospitalAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_hospital, parent, false)
@@ -42,4 +42,10 @@ class HospitalAdapter(private val hospitals: List<Hospital>) : RecyclerView.Adap
         val tvEstoqueTipoOPositivo: TextView = view.findViewById(R.id.tvEstoqueTipoOPositivoValor)
 
     }
+
+    fun updateData(newHospitals: List<Hospital>) {
+        this.hospitals = newHospitals
+        notifyDataSetChanged()
+    }
+
 }
